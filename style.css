@@ -1,0 +1,219 @@
+:root{
+    --color-white:#fff;
+    --color-green2: #065e3d;
+    --color-green5:#a4dab9;
+    --color-green6:#BCEAD5;
+    --color-green8:#edfff4;
+    --color-red: red;
+    --color-black:#000;
+    --color-blue7:#93c3e6;
+    --shadow-color: #00000034;
+    --font-weight-md: 500;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+	line-height: 1;
+    height: 100vh;
+    display: flex;
+    box-sizing: border-box;
+    background-color: var(--color-green8);
+}
+
+#root{
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+
+.memorygame{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.memorygame__title{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-green2);
+}
+
+.playerContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.playerInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.gamecontainer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,150px);
+    gap: 10px;
+    width: 100%;
+}
+
+.playerActive{
+    border: 2px solid var(--color-green2);
+    border-radius: 10px;
+}
+
+#playerTime{
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-md);
+    color: var(--color-green2);
+}
+
+.gamecontainer > button{
+    font-size: 7rem;
+    font-weight: bolder;
+    background-color: var(--color-green5);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.gamecontainer > button:hover{
+    opacity: 0.8;
+    transform: rotateY(50deg);
+}
+
+.gamecontainer > button:active{
+    opacity: 0.7;
+    transform: rotateY(60deg);
+}
+
+.gamecontainer > button:active{
+    
+}
+
+.resetgame{
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-md);
+    background-color: var(--color-green5);
+    color: var(--color-green2);
+    border: 1.5px solid var(--color-green2);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.resetgame:hover{
+    opacity: 0.9;
+}
+
+.resetgame:active{
+    opacity: 0.7;
+}
+
+.modalcontainer{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;    
+    height: 100%;
+    width: 100%;
+    background-color: #00000017;
+}
+
+.resultcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    height: 60vh;
+    width: 90%;
+    max-width: 700px;
+    background-color: var(--color-green2);
+    border-radius: 20px;
+}
+
+.gameresult{
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-green8);
+}
+
+.btn__rematch{
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--color-green5);
+    color: #065e3d;
+    cursor: pointer;
+}
+
+.btn__rematch:hover{
+    opacity: 0.9;
+}
+
+.btn__rematch:active{
+    opacity: 0.7;
+}
