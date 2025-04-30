@@ -8,6 +8,9 @@ class MemoryGame {
         this.firstCard = null;
         this.secondCard = null;
         this.playerScore = [0, 0];
+        this.counter = 60;
+        this.timer = null;
+        this.showTime(document.getElementById(`playerTime`));
     }
     initEventlistner() {
         var _a, _b;
@@ -20,6 +23,20 @@ class MemoryGame {
         (_b = document.querySelector('.resetgame')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', (event) => {
             this.resetGame();
         });
+    }
+    showTime(element) {
+        if (this.timer && this.counter < 0) {
+            this.resetCard();
+            this.togglePlayer();
+            return;
+        }
+        if (!this.timer) {
+            this.timer = setInterval(() => {
+                element.textContent = `Time Remaining: ${this.counter}`;
+                this.counter--;
+                this.showTime(element);
+            }, 1000);
+        }
     }
     generateGameArray() {
         let len = this.gameArray.length;
@@ -72,16 +89,12 @@ class MemoryGame {
                 currPlayerScore.textContent = `Score: ${this.playerScore[this.currentPlayer]}`;
                 this.firstCard = null;
                 this.secondCard = null;
+                this.resetTimer();
             }
             else {
                 this.togglePlayer();
                 setTimeout(() => {
-                    this.firstCard.textContent = '';
-                    this.firstCard.disabled = false;
-                    this.secondCard.textContent = '';
-                    this.secondCard.disabled = false;
-                    this.firstCard = null;
-                    this.secondCard = null;
+                    this.resetCard();
                 }, 500);
             }
         }
@@ -92,6 +105,22 @@ class MemoryGame {
         this.currentPlayer = this.currentPlayer === 0 ? 1 : 0;
         const nextPlayer = document.getElementById(`player${this.currentPlayer + 1}`);
         nextPlayer.classList.add('playerActive');
+        this.resetTimer();
+    }
+    resetCard() {
+        if (this.firstCard) {
+            this.firstCard.textContent = '';
+            this.firstCard.disabled = false;
+            this.firstCard = null;
+        }
+        if (this.secondCard) {
+            this.secondCard.textContent = '';
+            this.secondCard.disabled = false;
+            this.secondCard = null;
+        }
+    }
+    resetTimer() {
+        this.counter = 60;
     }
     resetGame() {
         this.generateGameArray();
