@@ -3,6 +3,7 @@ import { Resultcontainer } from "./component/Resultcontainer.js";
 
 class MemoryGame{
     gameArray: string[];
+    revelArray: string[];
     currentPlayer: number;
     firstCard: HTMLButtonElement|null;
     secondCard: HTMLButtonElement|null;
@@ -72,7 +73,7 @@ class MemoryGame{
 
         this.suffleArray();
 
-        console.log(this.gameArray);
+        // console.log(this.gameArray);
         this.generateGrid();
     }
 

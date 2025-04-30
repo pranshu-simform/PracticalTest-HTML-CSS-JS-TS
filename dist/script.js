@@ -53,7 +53,7 @@ class MemoryGame {
             this.gameArray[i] = (i - len / 2).toString();
         }
         this.suffleArray();
-        console.log(this.gameArray);
+        // console.log(this.gameArray);
         this.generateGrid();
     }
     suffleArray() {
