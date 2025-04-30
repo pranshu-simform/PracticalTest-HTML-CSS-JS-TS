@@ -105,10 +105,6 @@ body {
     width: 100%;
 }
 
-.gamecontainer > button{
-    font-size: 10rem;
-}
-
 .playerActive{
     border: 2px solid var(--color-green2);
     border-radius: 10px;
@@ -118,4 +114,17 @@ body {
     font-size: 1.2rem;
     font-weight: var(--font-weight-md);
     color: var(--color-green2);
+}
+
+.gamecontainer > button{
+    font-size: 7rem;
+    font-weight: bolder;
+    background-color: var(--color-green5);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gamecontainer > button:hover{
+    opacity: 0.7;
 }
