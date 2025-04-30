@@ -1,5 +1,5 @@
-import { Gamecontainer } from "../dist/component/Gamecontainer.js";
-import { Resultcontainer } from "../dist/component/Resultcontainer.js";
+import { Gamecontainer } from "./component/Gamecontainer.js";
+import { Resultcontainer } from "./component/Resultcontainer.js";
 class MemoryGame {
     constructor() {
         this.currentPlayer = 0;
@@ -71,6 +71,8 @@ class MemoryGame {
         gamecontainer.innerHTML = '';
         for (let i = 0; i < this.gameArray.length; i++) {
             const btnElement = document.createElement('button');
+            btnElement.role = 'button';
+            btnElement.ariaLabel = 'game button';
             btnElement.value = this.gameArray[i];
             fragment.append(btnElement);
         }
