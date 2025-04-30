@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="./dist/script.js"></script>
+    <script defer type="module" src="./dist/script.js"></script>
 </head>
 <body>
     <div class="memorygame">
+        <h1 class="memorygame__title">Memory Game</h1>
         <div class="playerContainer">
             <div class="playerInfo playerActive" id="player1">
                 <p>Player 1</p>
@@ -17,30 +21,13 @@
             <div class="playerInfo" id="player2">
                 <p>Player 2</p>
                 <p id="scoreplayer2">score: 0</p>
-                <!-- <p id="timeplayer2">Time Remaining: 60</p> -->
             </div>
         </div>
         <p id="playerTime">Time Remaining: 60</p>
-        <p class="gameresult"></p>
-        <button>Rematch</button>
+        <!-- <p class="gameresult"></p>
+        <button>Rematch</button> -->
         <!-- <p>Time</p> -->
         <div class="gamecontainer">
-            <!-- <button value="0"></button>
-            <button value="1"></button>
-            <button value="2"></button>
-            <button value="3"></button>
-            <button value="4"></button>
-            <button value="5"></button>
-            <button value="6"></button>
-            <button value="7"></button>
-            <button value="8"></button>
-            <button value="9"></button>
-            <button value="10"></button>
-            <button value="11"></button>
-            <button value="12"></button>
-            <button value="13"></button>
-            <button value="14"></button>
-            <button value="15"></button> -->
         </div>
 
         <button class="resetgame">Reset</button>
