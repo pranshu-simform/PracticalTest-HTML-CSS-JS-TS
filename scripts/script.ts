@@ -54,9 +54,7 @@ class MemoryGame{
             element.textContent=element.value;
             element.disabled=true;
         }
-        else if(this.firstCard!==null&&this.secondCard===null){
-            console.log(element);
-            
+        else if(this.firstCard!==null&&this.secondCard===null){            
             this.secondCard=element;
             element.textContent=element.value;
             element.disabled=true;
@@ -68,18 +66,30 @@ class MemoryGame{
         if(this.firstCard!==null&&this.secondCard!==null){
             if(this.firstCard.value===this.secondCard.value){
                 this.playerScore[this.currentPlayer]=this.playerScore[this.currentPlayer]+1;
+                const currPlayerScore=document.getElementById(`scoreplayer${this.currentPlayer+1}`);
+                currPlayerScore!.textContent=`Score: ${this.playerScore[this.currentPlayer]}`
             }
             else{
+                this.togglePlayer();
                 this.firstCard.textContent='';
                 this.firstCard.disabled=false;
                 this.secondCard.textContent='';
                 this.secondCard.disabled=false;
-                this.currentPlayer=this.currentPlayer===0?1:0;
             }
 
             this.firstCard=null;
             this.secondCard=null;
         }
+    }
+
+    togglePlayer(){
+        const currPlayer=document.getElementById(`player${this.currentPlayer+1}`);
+        currPlayer!.classList.remove('playerActive');
+
+        this.currentPlayer=this.currentPlayer===0?1:0;
+
+        const nextPlayer=document.getElementById(`player${this.currentPlayer+1}`);
+        nextPlayer!.classList.add('playerActive');
     }
 }
 
