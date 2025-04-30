@@ -1,5 +1,9 @@
+import { Gamecontainer } from "./component/Gamecontainer.js";
+import { Resultcontainer } from "./component/Resultcontainer.js";
+
 class MemoryGame{
     gameArray: string[];
+    revelArray: string[];
     currentPlayer: number;
     firstCard: HTMLButtonElement|null;
     secondCard: HTMLButtonElement|null;
@@ -31,6 +35,12 @@ class MemoryGame{
         document.querySelector('.resetgame')?.addEventListener('click',(event: Event)=>{
             this.resetGame();
         })
+
+        document.querySelector('.btn__rematch')?.addEventListener('click',(event: Event)=>{
+            this.resetGame();
+            const resultContainer=document.querySelector('.modalcontainer') as HTMLElement;     
+            this.closeElement(resultContainer);
+        })
     }
 
     showTime(element: HTMLParagraphElement){
@@ -61,9 +71,9 @@ class MemoryGame{
             this.gameArray[i]=(i-len/2).toString();
         }
 
-        // this.suffleArray();
+        this.suffleArray();
 
-        console.log(this.gameArray);
+        // console.log(this.gameArray);
         this.generateGrid();
     }
 
@@ -80,12 +90,17 @@ class MemoryGame{
 
     generateGrid(){
         const gamecontainer=document.querySelector('.gamecontainer');
+        const fragment=document.createDocumentFragment();
         gamecontainer!.innerHTML='';
         for(let i=0;i<this.gameArray.length;i++){
             const btnElement=document.createElement('button');
+            btnElement.role='button';
+            btnElement.ariaLabel='game button';
             btnElement.value=this.gameArray[i];
-            gamecontainer!.appendChild(btnElement);
+            fragment.append(btnElement);
         }
+
+        gamecontainer?.append(fragment);
     }
 
     handleButtonclick(element: HTMLButtonElement){
@@ -146,6 +161,9 @@ class MemoryGame{
         else{
             resultElement!.textContent='Player 2 Wins.'
         }
+
+        const resultContainer=document.querySelector('.modalcontainer') as HTMLElement;     
+        this.openElement(resultContainer);
     }
 
     togglePlayer(){
@@ -190,8 +208,22 @@ class MemoryGame{
         const scorePlayer2=document.getElementById('scoreplayer2');
         scorePlayer2!.textContent=`Score: ${0}`;
     }
+
+    openElement(element: HTMLElement){
+        element.style.display='flex';
+    }
+
+    closeElement(element: HTMLElement){
+        element.style.display='none';
+    }
 }
 
 document.addEventListener('DOMContentLoaded',(event: Event)=>{
+    const rootContainer=document.getElementById('root');
+    console.log(rootContainer);
+    
+    rootContainer!.innerHTML+=Gamecontainer;
+    rootContainer!.innerHTML+=Resultcontainer;
+    
     new MemoryGame();
 })
