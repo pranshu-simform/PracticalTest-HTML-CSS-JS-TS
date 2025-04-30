@@ -109,6 +109,10 @@ class MemoryGame{
                 const currPlayerScore=document.getElementById(`scoreplayer${this.currentPlayer+1}`);
                 currPlayerScore!.textContent=`Score: ${this.playerScore[this.currentPlayer]}`;
 
+                if(this.checkWining()){
+                    this.showWinner();
+                }
+
                 this.firstCard=null;
                 this.secondCard=null;
                 this.resetTimer();
@@ -120,6 +124,27 @@ class MemoryGame{
                 },500)
             }
 
+        }
+    }
+
+    checkWining(){
+        return this.playerScore[0]+this.playerScore[1]===this.gameArray.length/2;
+    }
+
+    showWinner(){
+        const player1Score=this.playerScore[0];
+        const player2Score=this.playerScore[1];
+
+        const resultElement=document.querySelector('.gameresult');
+
+        if(player1Score===player2Score){
+            resultElement!.textContent='Match Tie.';
+        }
+        else if(player1Score>player2Score){
+            resultElement!.textContent='Player 1 Wins.'
+        }
+        else{
+            resultElement!.textContent='Player 2 Wins.'
         }
     }
 
@@ -158,6 +183,7 @@ class MemoryGame{
         this.firstCard=null;
         this.secondCard=null;
         this.playerScore=[0,0];
+        this.resetTimer();
         const scorePlayer1=document.getElementById('scoreplayer1');
         scorePlayer1!.textContent=`Score: ${0}`;
 
