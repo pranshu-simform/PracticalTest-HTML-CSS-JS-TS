@@ -150,3 +150,52 @@ body {
 .resetgame:active{
     opacity: 0.7;
 }
+
+.modalcontainer{
+    position: fixed;    
+    height: 100%;
+    width: 100%;
+    background-color: #00000017;
+}
+
+.resultcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    height: 60vh;
+    width: 90%;
+    max-width: 700px;
+    background-color: var(--color-green2);
+    border-radius: 20px;
+}
+
+.gameresult{
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-green8);
+}
+
+.btn__rematch{
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--color-green5);
+    color: #065e3d;
+    cursor: pointer;
+}
+
+.btn__rematch:hover{
+    opacity: 0.9;
+}
+
+.btn__rematch:active{
+    opacity: 0.7;
+}
