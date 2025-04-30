@@ -69,11 +69,10 @@ body {
     text-align: center;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 90vh;
     width: 90%;
     max-width: 700px;
     margin: auto;
-    /* background-color: var(--color-green6); */
 }
 
 .memorygame__title{
@@ -126,5 +125,28 @@ body {
 }
 
 .gamecontainer > button:hover{
+    opacity: 0.8;
+}
+
+.gamecontainer > button:active{
+    opacity: 0.7;
+}
+
+.resetgame{
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-md);
+    background-color: var(--color-green5);
+    color: var(--color-green2);
+    border: 1.5px solid var(--color-green2);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.resetgame:hover{
+    opacity: 0.9;
+}
+
+.resetgame:active{
     opacity: 0.7;
 }
