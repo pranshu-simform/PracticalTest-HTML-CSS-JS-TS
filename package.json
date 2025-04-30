@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "parcel": "^2.14.4"
+  },
+  "name": "practicaltest-js-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pranshu1852/PracticalTest-JS-TS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pranshu1852/PracticalTest-JS-TS/issues"
+  },
+  "homepage": "https://github.com/Pranshu1852/PracticalTest-JS-TS#readme"
+}
