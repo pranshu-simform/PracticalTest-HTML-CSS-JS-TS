@@ -1,3 +1,6 @@
+import { Gamecontainer } from "../dist/component/Gamecontainer.js";
+import { Resultcontainer } from "../dist/component/Resultcontainer.js";
+
 class MemoryGame{
     gameArray: string[];
     currentPlayer: number;
@@ -67,7 +70,7 @@ class MemoryGame{
             this.gameArray[i]=(i-len/2).toString();
         }
 
-        // this.suffleArray();
+        this.suffleArray();
 
         console.log(this.gameArray);
         this.generateGrid();
@@ -86,12 +89,15 @@ class MemoryGame{
 
     generateGrid(){
         const gamecontainer=document.querySelector('.gamecontainer');
+        const fragment=document.createDocumentFragment();
         gamecontainer!.innerHTML='';
         for(let i=0;i<this.gameArray.length;i++){
             const btnElement=document.createElement('button');
             btnElement.value=this.gameArray[i];
-            gamecontainer!.appendChild(btnElement);
+            fragment.append(btnElement);
         }
+
+        gamecontainer?.append(fragment);
     }
 
     handleButtonclick(element: HTMLButtonElement){
@@ -210,5 +216,11 @@ class MemoryGame{
 }
 
 document.addEventListener('DOMContentLoaded',(event: Event)=>{
+    const rootContainer=document.getElementById('root');
+    console.log(rootContainer);
+    
+    rootContainer!.innerHTML+=Gamecontainer;
+    rootContainer!.innerHTML+=Resultcontainer;
+    
     new MemoryGame();
 })
