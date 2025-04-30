@@ -31,6 +31,12 @@ class MemoryGame{
         document.querySelector('.resetgame')?.addEventListener('click',(event: Event)=>{
             this.resetGame();
         })
+
+        document.querySelector('.btn__rematch')?.addEventListener('click',(event: Event)=>{
+            this.resetGame();
+            const resultContainer=document.querySelector('.modalcontainer') as HTMLElement;     
+            this.closeElement(resultContainer);
+        })
     }
 
     showTime(element: HTMLParagraphElement){
@@ -146,6 +152,9 @@ class MemoryGame{
         else{
             resultElement!.textContent='Player 2 Wins.'
         }
+
+        const resultContainer=document.querySelector('.modalcontainer') as HTMLElement;     
+        this.openElement(resultContainer);
     }
 
     togglePlayer(){
@@ -189,6 +198,14 @@ class MemoryGame{
 
         const scorePlayer2=document.getElementById('scoreplayer2');
         scorePlayer2!.textContent=`Score: ${0}`;
+    }
+
+    openElement(element: HTMLElement){
+        element.style.display='flex';
+    }
+
+    closeElement(element: HTMLElement){
+        element.style.display='none';
     }
 }
 

@@ -13,7 +13,7 @@ class MemoryGame {
         this.showTime(document.getElementById(`playerTime`));
     }
     initEventlistner() {
-        var _a, _b;
+        var _a, _b, _c;
         (_a = document.querySelector('.gamecontainer')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', (event) => {
             if (event.target.tagName === 'BUTTON') {
                 const btnElement = event.target;
@@ -22,6 +22,11 @@ class MemoryGame {
         });
         (_b = document.querySelector('.resetgame')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', (event) => {
             this.resetGame();
+        });
+        (_c = document.querySelector('.btn__rematch')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', (event) => {
+            this.resetGame();
+            const resultContainer = document.querySelector('.modalcontainer');
+            this.closeElement(resultContainer);
         });
     }
     showTime(element) {
@@ -118,6 +123,8 @@ class MemoryGame {
         else {
             resultElement.textContent = 'Player 2 Wins.';
         }
+        const resultContainer = document.querySelector('.modalcontainer');
+        this.openElement(resultContainer);
     }
     togglePlayer() {
         const currPlayer = document.getElementById(`player${this.currentPlayer + 1}`);
@@ -152,6 +159,12 @@ class MemoryGame {
         scorePlayer1.textContent = `Score: ${0}`;
         const scorePlayer2 = document.getElementById('scoreplayer2');
         scorePlayer2.textContent = `Score: ${0}`;
+    }
+    openElement(element) {
+        element.style.display = 'flex';
+    }
+    closeElement(element) {
+        element.style.display = 'none';
     }
 }
 document.addEventListener('DOMContentLoaded', (event) => {
