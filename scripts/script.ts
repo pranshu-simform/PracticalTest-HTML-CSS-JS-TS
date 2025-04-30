@@ -3,7 +3,9 @@ class MemoryGame{
     currentPlayer: number;
     firstCard: HTMLButtonElement|null;
     secondCard: HTMLButtonElement|null;
-    playerScore: [number,number]
+    playerScore: [number,number];
+    counter: number;
+    timer: number|null;
 
     constructor(){
         this.currentPlayer=0;
@@ -13,6 +15,9 @@ class MemoryGame{
         this.firstCard=null;
         this.secondCard=null;
         this.playerScore=[0,0];
+        this.counter=60;
+        this.timer=null;
+        this.showTime(document.getElementById(`playerTime`) as HTMLParagraphElement);
     }
 
     initEventlistner(){
@@ -22,7 +27,28 @@ class MemoryGame{
                 this.handleButtonclick(btnElement);
             }
         })
+
+        document.querySelector('.resetgame')?.addEventListener('click',(event: Event)=>{
+            this.resetGame();
+        })
     }
+
+    showTime(element: HTMLParagraphElement){
+        if(this.timer&&this.counter<0){
+            this.resetCard();
+            this.togglePlayer();
+            return;
+        }
+        
+        if(!this.timer){
+            this.timer=setInterval(()=>{
+                element.textContent=`Time Remaining: ${this.counter}`;
+                this.counter--;
+                this.showTime(element);
+            },1000)
+        }
+    }
+
 
     generateGameArray(){
         let len=this.gameArray.length;
@@ -35,12 +61,26 @@ class MemoryGame{
             this.gameArray[i]=(i-len/2).toString();
         }
 
+        // this.suffleArray();
+
         console.log(this.gameArray);
         this.generateGrid();
     }
 
+    suffleArray(){
+        let len=this.gameArray.length;
+
+        for(let i=len-1;i>0;i--){
+            const j=Math.floor(Math.random()*(i+1));
+            let temp=this.gameArray[i];
+            this.gameArray[i]=this.gameArray[j];
+            this.gameArray[j]=temp;
+        }
+    }
+
     generateGrid(){
         const gamecontainer=document.querySelector('.gamecontainer');
+        gamecontainer!.innerHTML='';
         for(let i=0;i<this.gameArray.length;i++){
             const btnElement=document.createElement('button');
             btnElement.value=this.gameArray[i];
@@ -67,18 +107,44 @@ class MemoryGame{
             if(this.firstCard.value===this.secondCard.value){
                 this.playerScore[this.currentPlayer]=this.playerScore[this.currentPlayer]+1;
                 const currPlayerScore=document.getElementById(`scoreplayer${this.currentPlayer+1}`);
-                currPlayerScore!.textContent=`Score: ${this.playerScore[this.currentPlayer]}`
+                currPlayerScore!.textContent=`Score: ${this.playerScore[this.currentPlayer]}`;
+
+                if(this.checkWining()){
+                    this.showWinner();
+                }
+
+                this.firstCard=null;
+                this.secondCard=null;
+                this.resetTimer();
             }
             else{
                 this.togglePlayer();
-                this.firstCard.textContent='';
-                this.firstCard.disabled=false;
-                this.secondCard.textContent='';
-                this.secondCard.disabled=false;
+                setTimeout(()=>{
+                    this.resetCard();
+                },500)
             }
 
-            this.firstCard=null;
-            this.secondCard=null;
+        }
+    }
+
+    checkWining(){
+        return this.playerScore[0]+this.playerScore[1]===this.gameArray.length/2;
+    }
+
+    showWinner(){
+        const player1Score=this.playerScore[0];
+        const player2Score=this.playerScore[1];
+
+        const resultElement=document.querySelector('.gameresult');
+
+        if(player1Score===player2Score){
+            resultElement!.textContent='Match Tie.';
+        }
+        else if(player1Score>player2Score){
+            resultElement!.textContent='Player 1 Wins.'
+        }
+        else{
+            resultElement!.textContent='Player 2 Wins.'
         }
     }
 
@@ -90,6 +156,39 @@ class MemoryGame{
 
         const nextPlayer=document.getElementById(`player${this.currentPlayer+1}`);
         nextPlayer!.classList.add('playerActive');
+
+        this.resetTimer();
+    }
+
+    resetCard(){
+        if(this.firstCard){
+            this.firstCard!.textContent='';
+            this.firstCard!.disabled=false;
+            this.firstCard=null;
+        }
+
+        if(this.secondCard){
+            this.secondCard!.textContent='';
+            this.secondCard!.disabled=false;
+            this.secondCard=null;
+        }
+    }
+
+    resetTimer(){
+        this.counter=60;
+    }
+
+    resetGame(){
+        this.generateGameArray();
+        this.firstCard=null;
+        this.secondCard=null;
+        this.playerScore=[0,0];
+        this.resetTimer();
+        const scorePlayer1=document.getElementById('scoreplayer1');
+        scorePlayer1!.textContent=`Score: ${0}`;
+
+        const scorePlayer2=document.getElementById('scoreplayer2');
+        scorePlayer2!.textContent=`Score: ${0}`;
     }
 }
 
